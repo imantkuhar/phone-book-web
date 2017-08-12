@@ -1,4 +1,4 @@
-package com.cooksdev.web.dto;
+package com.cooksdev.service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,4 +18,5 @@ public class ContactDto {
     private String homePhone;
     private String address;
     private String mail;
+    private Integer userId;
 }

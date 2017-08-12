@@ -1,8 +1,8 @@
 package com.cooksdev.service;
 
-import com.cooksdev.data.entity.User;
+import com.cooksdev.service.dto.UserDto;
 
 public interface UserService {
 
-    void saveUser(User user);
+    void saveUser(UserDto userDto);
 }

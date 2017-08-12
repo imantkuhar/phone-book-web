@@ -29,8 +29,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 
     private @Autowired AuthenticationManager authenticationManager;
     private @Autowired UserDetailsService userDetailsService;
-    private @Autowired
-    UserRepository userRepo;
+    private @Autowired UserRepository userRepo;
 
 
     @Override
@@ -77,7 +76,6 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
                 .scopes("read", "write")
                 .accessTokenValiditySeconds(60 * 30)       // 30 minutes
                 .refreshTokenValiditySeconds(60 * 24 * 24) // 24 hours
-
         ;
     }
 

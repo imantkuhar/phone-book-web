@@ -1,4 +1,4 @@
-package com.cooksdev.web.dto;
+package com.cooksdev.service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
