@@ -61,7 +61,6 @@
             <version>3.5</version>
         </dependency>
 
-
         <!--MySQL-->
         <dependency>
             <groupId>mysql</groupId>
@@ -84,8 +83,6 @@
             <scope>test</scope>
         </dependency>
 
-
     </dependencies>
-
 
 </project>

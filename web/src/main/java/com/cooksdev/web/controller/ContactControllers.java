@@ -4,10 +4,7 @@ import com.cooksdev.service.dto.ContactDto;
 import com.cooksdev.web.security.AuthService;
 import com.cooksdev.web.service.ContactRestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,8 +25,24 @@ public class ContactControllers {
     }
 
     @RequestMapping(value = "/contacts", method = RequestMethod.POST)
-    public ContactDto add(@RequestBody ContactDto contactDto) {
+    public ContactDto addContact(@RequestBody ContactDto contactDto) {
         contactDto.setUserId(authService.getUser().getId());
-        return contactRestService.add(contactDto);
+        return contactRestService.addContact(contactDto);
+    }
+
+    @RequestMapping(value = "/contacts/{id}", method = RequestMethod.DELETE)
+    public boolean deleteContact(@PathVariable("id") String id) {
+        return contactRestService.deleteContact(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "/contacts/{id}", method = RequestMethod.GET)
+    public ContactDto getById(@PathVariable("id") String id) {
+        return contactRestService.getContact(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "/contacts/{id}", method = RequestMethod.PUT)
+    public ContactDto update(@RequestBody ContactDto contactDto, @PathVariable("id") String id) {
+        contactDto.setId(Integer.parseInt(id));
+        return contactRestService.updateContact(contactDto);
     }
 }

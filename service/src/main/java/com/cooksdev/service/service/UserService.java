@@ -1,4 +1,4 @@
-package com.cooksdev.service;
+package com.cooksdev.service.service;
 
 import com.cooksdev.service.dto.UserDto;
 

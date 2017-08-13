@@ -1,6 +1,5 @@
-package com.cooksdev.service;
+package com.cooksdev.service.service;
 
-import com.cooksdev.data.entity.Contact;
 import com.cooksdev.service.dto.ContactDto;
 
 import java.util.List;
@@ -8,8 +7,8 @@ import java.util.List;
 public interface ContactService {
 
     ContactDto addContact (ContactDto contactDto);
-    void updateContact (ContactDto contactDto);
-    void deleteContact(ContactDto contactDto);
-    void getContact(ContactDto contactDto);
+    ContactDto updateContact (ContactDto contactDto);
+    boolean deleteContact(Integer id);
+    ContactDto getContact(Integer id);
     List<ContactDto> getAllContactsByUserId(Integer userId);
 }
