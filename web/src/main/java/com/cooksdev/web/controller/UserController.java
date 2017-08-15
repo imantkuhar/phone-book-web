@@ -20,8 +20,8 @@ public class UserController {
     private UserRepository userRepository;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void add(@RequestBody UserDto userDto) {
-        userRestService.registerUser(userDto);
+    public UserDto add(@RequestBody UserDto userDto) {
+       return userRestService.registerUser(userDto);
     }
 
     @RequestMapping(method = RequestMethod.GET)

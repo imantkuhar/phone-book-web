@@ -43,6 +43,7 @@ public class ContactControllers {
     @RequestMapping(value = "/contacts/{id}", method = RequestMethod.PUT)
     public ContactDto update(@RequestBody ContactDto contactDto, @PathVariable("id") String id) {
         contactDto.setId(Integer.parseInt(id));
+        contactDto.setUserId(authService.getUser().getId());
         return contactRestService.updateContact(contactDto);
     }
 }

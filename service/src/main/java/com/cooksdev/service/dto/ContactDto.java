@@ -14,9 +14,9 @@ public class ContactDto {
     private Integer id;
     private String name;
     private String surname;
-    private String mobilePhone;
-    private String homePhone;
+    private String mobile_phone;
+    private String home_phone;
     private String address;
-    private String mail;
+    private String email;
     private Integer userId;
 }

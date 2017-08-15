@@ -24,10 +24,10 @@ public class ContactTransformer extends AbstractTransformer<Contact, ContactDto>
                 .id(contact.getId())
                 .name(contact.getName())
                 .surname(contact.getSurname())
-                .mobilePhone(contact.getMobilePhone())
-                .homePhone(contact.getHomePhone())
+                .mobile_phone(contact.getMobilePhone())
+                .home_phone(contact.getHomePhone())
                 .address(contact.getAddress())
-                .mail(contact.getMail())
+                .email(contact.getMail())
                 .userId(contact.getUser().getId())
                 .build();
     }
@@ -40,12 +40,13 @@ public class ContactTransformer extends AbstractTransformer<Contact, ContactDto>
 
         User user = userRepository.findOne(contactDto.getUserId());
         return Contact.builder()
+                .id(contactDto.getId())
                 .name(contactDto.getName())
                 .surname(contactDto.getSurname())
-                .homePhone(contactDto.getHomePhone())
-                .mobilePhone(contactDto.getMobilePhone())
+                .homePhone(contactDto.getHome_phone())
+                .mobilePhone(contactDto.getMobile_phone())
                 .address(contactDto.getAddress())
-                .mail(contactDto.getMail())
+                .mail(contactDto.getEmail())
                 .user(user)
                 .build();
     }
