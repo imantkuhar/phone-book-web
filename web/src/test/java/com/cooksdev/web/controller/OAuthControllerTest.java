@@ -46,6 +46,24 @@ public class OAuthControllerTest extends AbstractWebApiIntegrationTest {
 
     @Test
     @DatabaseSetup(value = "/dataset/users_init.xml")
+    public void authorizationTestById() throws Exception {
+        mockMvc.perform(post("/oauth/token")
+                .header(AUTHORIZATION, AUTHORIZATION_VALUE)
+                .header(CONTENT_TYPE, CONTENT_TYPE_VALUE)
+                .param(GRANT_TYPE, GRANT_TYPE_VALUE)
+                .param(USERNAME, TestDataHelper.USER_ID)
+                .param(PASSWORD, TestDataHelper.USER_PWD))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("access_token", anything()))
+                .andExpect(jsonPath("refresh_token", anything()))
+                .andExpect(jsonPath("token_type", is("bearer")))
+                .andExpect(jsonPath("expires_in", anything()))
+                .andExpect(jsonPath("scope", anything()))
+                .andExpect(jsonPath("jti", anything()));
+    }
+
+    @Test
+    @DatabaseSetup(value = "/dataset/users_init.xml")
     public void authorizationBadCredentialsTest() throws Exception{
         mockMvc.perform(post("/oauth/token")
                 .header(AUTHORIZATION, AUTHORIZATION_VALUE)

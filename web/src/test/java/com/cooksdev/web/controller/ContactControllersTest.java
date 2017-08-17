@@ -6,7 +6,6 @@ public class ContactControllersTest {
     @Test
     public void addContact() throws Exception {
 
-
     }
 
     @Test
