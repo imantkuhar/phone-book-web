@@ -1,6 +1,5 @@
 package com.cooksdev.web.controller;
 
-import com.cooksdev.data.entity.User;
 import com.cooksdev.web.AbstractWebApiIntegrationTest;
 import com.cooksdev.web.TestWebHelper;
 import com.cooksdev.web.dto.UserDto;
@@ -40,7 +39,7 @@ public class UserControllerTest extends AbstractWebApiIntegrationTest {
     public void registerUser() throws Exception {
         MvcResult mvcResult  = mockMvc.perform(post("/users")
                 .contentType(TestWebHelper.APPLICATION_JSON_UTF8)
-                .content(TestWebHelper.convertObjectToJsonBytes(userDto)))
+                .content(JsonUtils.toJson(userDto)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("login", is(LOGIN)))
                 .andExpect(jsonPath("full_name", is(FULL_NAME)))
@@ -55,7 +54,7 @@ public class UserControllerTest extends AbstractWebApiIntegrationTest {
         userDto.setLogin("");
         mockMvc.perform(post("/users")
                 .contentType(TestWebHelper.APPLICATION_JSON_UTF8)
-                .content(TestWebHelper.convertObjectToJsonBytes(userDto)))
+                .content(JsonUtils.toJson(userDto)))
                 .andExpect(status().is4xxClientError());
     }
 
@@ -64,7 +63,7 @@ public class UserControllerTest extends AbstractWebApiIntegrationTest {
         userDto.setPassword("");
         mockMvc.perform(post("/users")
                 .contentType(TestWebHelper.APPLICATION_JSON_UTF8)
-                .content(TestWebHelper.convertObjectToJsonBytes(userDto)))
+                .content(JsonUtils.toJson(userDto)))
                 .andExpect(status().is4xxClientError());
     }
 
@@ -73,7 +72,7 @@ public class UserControllerTest extends AbstractWebApiIntegrationTest {
         userDto.setFullName("");
         mockMvc.perform(post("/users")
                 .contentType(TestWebHelper.APPLICATION_JSON_UTF8)
-                .content(TestWebHelper.convertObjectToJsonBytes(userDto)))
+                .content(JsonUtils.toJson(userDto)))
                 .andExpect(status().is4xxClientError());
     }
 }

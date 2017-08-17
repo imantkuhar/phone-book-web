@@ -1,12 +1,16 @@
 package com.cooksdev.web.controller;
 
+import com.cooksdev.web.AbstractWebApiIntegrationTest;
+import com.cooksdev.web.dto.HeartbeatDto;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class HeartbeatControllerTest {
+public class HeartbeatControllerTest extends AbstractWebApiIntegrationTest {
     @Test
-    public void heartbeat() throws Exception {
+    public void exampleTest() throws Exception {
+        HeartbeatDto heartbeat = restTemplate.getForObject("/heartbeat", HeartbeatDto.class);
+        assertThat(heartbeat.getModule()).isEqualTo("web");
     }
 
 }
