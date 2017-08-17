@@ -1,0 +1,11 @@
+<dataset>
+
+    <users
+    id="1"
+    login="[login]"
+    password="[password:123456]"
+    full_name="FullName"
+    state="REGISTERED"
+    />
+
+</dataset>

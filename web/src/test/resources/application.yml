@@ -1,0 +1,22 @@
+server:
+  port: 8011
+
+spring:
+  application:
+    name: Phone Book Integration Test
+  jpa:
+    database: H2
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
+
+  datasource:
+    driverClassName:  org.h2.Driver
+    url:  jdbc:h2:mem:phone-book-h2;MODE=MySQL;IGNORECASE=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: niffler!test-secret_Key
