@@ -8,10 +8,16 @@
 * JavaScript and JQuery
 
 ### Before run: 
+* Install Java
+* Install Maven
 * Install MySQL Server
 * Create database in MySQL with name 'phoneBookDB'
 * Change user's password and name for MySQL in application.yml
 
+## To Build Prject:
+* command `mvn install` will build the project and run all integration tests
+
+## SQL Scripts
 SQL scripts for creating tables users and contacts:
 ```sql
 create table users
