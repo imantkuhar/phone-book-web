@@ -1,6 +1,7 @@
 package com.cooksdev.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +17,6 @@ public class UserDto {
     private Integer id;
     private String login;
     private String password;
-    private String full_name;
+    @JsonProperty("full_name")
+    private String fullName;
 }

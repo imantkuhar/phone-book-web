@@ -1,4 +1,4 @@
-package com.cooksdev.service.exception.util;
+package com.cooksdev.service.util;
 
 import org.apache.commons.lang3.StringUtils;
 import static org.apache.commons.lang3.exception.ExceptionUtils.getRootCauseMessage;

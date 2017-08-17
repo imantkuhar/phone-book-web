@@ -1,4 +1,4 @@
-package com.cooksdev.service.exception.util;
+package com.cooksdev.service.util;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;

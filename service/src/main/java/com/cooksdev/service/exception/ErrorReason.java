@@ -4,6 +4,7 @@ public enum ErrorReason {
 
     //Service errors
     INTERNAL_SERVER_ERROR("Internal Server Error"),
+    JSON_MARSHALLING_ERROR("Unable to marshal object %s"),
 
     //Validation errors
     VALIDATION_PARAMETER_IS_NULL("Parameter is null"),

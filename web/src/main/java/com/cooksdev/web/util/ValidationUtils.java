@@ -23,7 +23,7 @@ public class ValidationUtils {
     public static void validateUserDto(UserDto userDto) {
         validateLogin(userDto.getLogin());
         validatePassword(userDto.getPassword());
-        validateFullName(userDto.getFull_name());
+        validateFullName(userDto.getFullName());
     }
 
     public static void validateContactDto(ContactDto contactDto) {

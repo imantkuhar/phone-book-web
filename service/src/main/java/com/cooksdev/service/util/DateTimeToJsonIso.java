@@ -1,4 +1,4 @@
-package com.cooksdev.service.exception.util;
+package com.cooksdev.service.util;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

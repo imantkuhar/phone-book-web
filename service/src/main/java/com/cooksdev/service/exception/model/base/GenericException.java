@@ -1,7 +1,7 @@
 package com.cooksdev.service.exception.model.base;
 
 import com.cooksdev.service.exception.ErrorReason;
-import com.cooksdev.service.exception.util.ExceptionUtils;
+import com.cooksdev.service.util.ExceptionUtils;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -21,7 +21,7 @@ public class UserTransformer extends AbstractTransformer<User, UserDto> {
                 .id(user.getId())
                 .login(user.getLogin())
                 .password(user.getPassword())
-                .full_name(user.getFullName())
+                .fullName(user.getFullName())
                 .build();
     }
 
@@ -34,7 +34,7 @@ public class UserTransformer extends AbstractTransformer<User, UserDto> {
         return User.builder()
                 .login(userDto.getLogin())
                 .password(encryptLoginPassword(userDto.getPassword()))
-                .fullName(userDto.getFull_name())
+                .fullName(userDto.getFullName())
                 .state(UserState.REGISTERED)
                 .build();
     }

@@ -1,8 +1,8 @@
 package com.cooksdev.service.exception.model;
 
 import com.cooksdev.service.exception.model.base.GenericException;
-import com.cooksdev.service.exception.util.DateTimeToJsonIso;
-import com.cooksdev.service.exception.util.DateUtils;
+import com.cooksdev.service.util.DateTimeToJsonIso;
+import com.cooksdev.service.util.DateUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
