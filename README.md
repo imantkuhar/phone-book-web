@@ -14,7 +14,7 @@
 * Create database in MySQL with name 'phoneBookDB'
 * Change user's password and name for MySQL in application.yml
 
-## To Build Prject:
+## To Build Project and Run Tests:
 * command `mvn install` will build the project and run all integration tests
 
 ## SQL Scripts
