@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phone book</title>
+
+    <link rel="stylesheet" href="css/alertify.css">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/phone-book-style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">Phone book</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="index.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="phone-book-wrapper">
+        <div class="container">
+            <div class="phone-book-header">
+                <h1>Your contacts</h1>
+            </div>
+            <div class="phone-book-list-wrapper">
+                <div class="phone-book-activity">
+                    <button class="btn add-contact-button">
+                        Add new
+                    </button>
+                    <div class="input-field col s12">
+                        <input id="contact_filter" name="contact_filter" type="text">
+                        <label for="contact_filter">Find contacts:</label>
+                    </div>
+                </div>
+                <div class="add-contact-wrapper">
+                    <div class="added-contact-info">
+                        <!--data will be here-->
+                    </div>
+                </div>
+                <ul class="collapsible phone-book-list" data-collapsible="accordion">
+                    <!--data will be here-->
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="http://wzrd.in/standalone/uuid%2Fv1@latest"></script>
+    <script src="js/alertify.js"></script>
+    <script src="js/phone-book.js"></script>
+
+</body>
+
+</html>

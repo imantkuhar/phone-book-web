@@ -12,5 +12,4 @@ public class HeartbeatController {
     public String heartbeat(){
         return "OK";
     }
-
 }

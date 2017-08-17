@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-
 @EnableJpaRepositories(basePackages = "com.cooksdev.data")
 @ComponentScan({"com.cooksdev.data", "com.cooksdev.service", "com.cooksdev.web"})
 @SpringBootApplication(exclude = {RepositoryRestMvcAutoConfiguration.class, HypermediaAutoConfiguration.class})

@@ -14,10 +14,10 @@ public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-
         http.authorizeRequests()
-                .antMatchers("/user/**").permitAll()
-                .antMatchers("/heartbeat/**").permitAll()
+                .antMatchers("/heartbeat").permitAll()
+                .antMatchers("/users").permitAll()
+                .antMatchers("/contacts").hasAnyAuthority("REGISTERED")
                 .and().csrf().disable();
     }
 

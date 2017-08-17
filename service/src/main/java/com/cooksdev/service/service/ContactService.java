@@ -1,14 +1,13 @@
 package com.cooksdev.service.service;
 
-import com.cooksdev.service.dto.ContactDto;
+import com.cooksdev.data.entity.Contact;
 
 import java.util.List;
 
 public interface ContactService {
 
-    ContactDto addContact (ContactDto contactDto);
-    ContactDto updateContact (ContactDto contactDto);
-    boolean deleteContact(Integer id);
-    ContactDto getContact(Integer id);
-    List<ContactDto> getAllContactsByUserId(Integer userId);
+    Contact addContact (Contact contact);
+    Contact updateContact (Contact contact);
+    void deleteContact(Contact contact);
+    List<Contact> getContacts();
 }

@@ -4,6 +4,8 @@ public enum ErrorReason {
 
     //Service errors
     INTERNAL_SERVER_ERROR("Internal Server Error"),
+    CANNOT_DELETE_CONTACT_WITH_THIS_ID("Cannot delete contact with id = %s"),
+    CANNOT_UPDATE_CONTACT_WITH_THIS_ID("Cannot update contact with id = %s"),
     ENTITY_WAS_NOT_FOUND("%s was not found"),
     ENTITY_WAS_NOT_ADDED("%s was not added"),
     ENTITY_WAS_NOT_UPDATED("%s was not updated"),

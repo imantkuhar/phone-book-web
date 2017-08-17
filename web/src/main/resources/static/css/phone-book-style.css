@@ -1,0 +1,58 @@
+body{
+    display: none;
+}
+
+.phone-book-header{
+    text-align: center;
+}
+
+.interaction-buttons{
+    text-align: center;
+}
+.interaction-buttons button{
+    margin: 5px;
+}
+
+.add-contact-wrapper{
+    text-align: right;
+    margin: 10px;
+}
+
+.added-contact-info{
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.new-contact{
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.phone-book-activity{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.phone-book-activity .input-field{
+    min-width: 400px;
+}
+
+.phone-book-list .collapsible-header{
+    position: relative;
+}
+
+.delete-contact{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: 15px;
+    cursor: pointer;
+    background: url('../images/trash.svg');
+    z-index: 2;
+}
+.ajs-header{
+    display: none !important;
+}

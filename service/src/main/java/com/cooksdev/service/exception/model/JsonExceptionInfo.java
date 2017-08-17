@@ -16,11 +16,13 @@ public class JsonExceptionInfo {
     private final LocalDateTime timestamp = DateUtils.nowUtc();
     private final String error;
     private final String message;
+    private final String description;
     private final Object details;
 
     public JsonExceptionInfo(GenericException e) {
         error = e.getErrorReason().name();
         message = e.getFullMessage();
+        description = e.getErrorReason().getDescription();
         details = e.errorDetails;
     }
 }

@@ -1,31 +1,22 @@
 package com.cooksdev.web.controller;
 
-import com.cooksdev.data.entity.User;
-import com.cooksdev.data.repository.UserRepository;
-import com.cooksdev.service.dto.UserDto;
+import com.cooksdev.web.dto.UserDto;
 import com.cooksdev.web.service.UserRestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserRestService userRestService;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @RequestMapping(method = RequestMethod.POST)
-    public UserDto add(@RequestBody UserDto userDto) {
+    public UserDto registerUser(@RequestBody UserDto userDto) {
        return userRestService.registerUser(userDto);
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public List<User> getUsers(){
-        return userRepository.findAll();
     }
 }

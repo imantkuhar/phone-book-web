@@ -1,4 +1,4 @@
-package com.cooksdev.web.security;
+package com.cooksdev.service.service;
 
 import com.cooksdev.data.entity.User;
 import com.cooksdev.data.repository.UserRepository;
@@ -25,10 +25,8 @@ public class AuthServiceImpl implements AuthService{
                 user = userRepo.findOne(Integer.parseInt(principal));
             }
         }
-
         return user;
     }
-
 
     public Integer getUserId() {
         if (principal == null || principal.equals(anonymous.getLogin()))

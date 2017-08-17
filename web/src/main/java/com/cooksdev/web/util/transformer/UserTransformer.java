@@ -1,12 +1,12 @@
-package com.cooksdev.service.util.transformer;
+package com.cooksdev.web.util.transformer;
 
 import com.cooksdev.data.entity.User;
 import com.cooksdev.data.enums.UserState;
-import com.cooksdev.service.dto.UserDto;
-import com.cooksdev.service.util.transformer.base.AbstractTransformer;
+import com.cooksdev.web.dto.UserDto;
+import com.cooksdev.web.util.transformer.base.AbstractTransformer;
 import org.springframework.stereotype.Component;
 
-import static com.cooksdev.service.util.EncryptionUtil.encryptLoginPassword;
+import static com.cooksdev.web.util.EncryptionUtil.encryptLoginPassword;
 
 @Component
 public class UserTransformer extends AbstractTransformer<User, UserDto> {

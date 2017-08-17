@@ -1,4 +1,4 @@
-package com.cooksdev.web.security;
+package com.cooksdev.service.service;
 
 import com.cooksdev.data.entity.User;
 

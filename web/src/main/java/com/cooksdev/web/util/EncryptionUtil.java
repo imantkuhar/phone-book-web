@@ -1,4 +1,4 @@
-package com.cooksdev.service.util;
+package com.cooksdev.web.util;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

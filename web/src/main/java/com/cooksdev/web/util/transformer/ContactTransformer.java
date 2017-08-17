@@ -1,10 +1,9 @@
-package com.cooksdev.service.util.transformer;
+package com.cooksdev.web.util.transformer;
 
 import com.cooksdev.data.entity.Contact;
-import com.cooksdev.data.entity.User;
-import com.cooksdev.data.repository.UserRepository;
-import com.cooksdev.service.dto.ContactDto;
-import com.cooksdev.service.util.transformer.base.AbstractTransformer;
+import com.cooksdev.web.dto.ContactDto;
+import com.cooksdev.service.service.AuthService;
+import com.cooksdev.web.util.transformer.base.AbstractTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class ContactTransformer extends AbstractTransformer<Contact, ContactDto> {
 
     @Autowired
-    private UserRepository userRepository;
+    private AuthService authService;
 
     @Override
     public ContactDto convertToDto(Contact contact) {
@@ -38,7 +37,6 @@ public class ContactTransformer extends AbstractTransformer<Contact, ContactDto>
             return null;
         }
 
-        User user = userRepository.findOne(contactDto.getUserId());
         return Contact.builder()
                 .id(contactDto.getId())
                 .name(contactDto.getName())
@@ -47,7 +45,7 @@ public class ContactTransformer extends AbstractTransformer<Contact, ContactDto>
                 .mobilePhone(contactDto.getMobile_phone())
                 .address(contactDto.getAddress())
                 .mail(contactDto.getEmail())
-                .user(user)
+                .user(authService.getUser())
                 .build();
     }
 }

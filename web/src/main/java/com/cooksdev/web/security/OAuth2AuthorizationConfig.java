@@ -1,6 +1,8 @@
 package com.cooksdev.web.security;
 
 import com.cooksdev.data.repository.UserRepository;
+import com.cooksdev.service.service.AuthService;
+import com.cooksdev.service.service.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

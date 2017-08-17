@@ -1,7 +1,7 @@
-package com.cooksdev.service.util;
+package com.cooksdev.web.util;
 
-import com.cooksdev.service.dto.ContactDto;
-import com.cooksdev.service.dto.UserDto;
+import com.cooksdev.web.dto.ContactDto;
+import com.cooksdev.web.dto.UserDto;
 import com.cooksdev.service.exception.ErrorReason;
 import com.cooksdev.service.exception.model.BadRequestException;
 import org.apache.commons.lang3.StringUtils;
@@ -11,14 +11,14 @@ import java.util.regex.Pattern;
 
 public class ValidationUtils {
 
+    private static final Pattern VALID_LOGIN_REGEX =
+            Pattern.compile("^[a-zA-Z0-9]{3,}$", Pattern.CASE_INSENSITIVE);
+
+    private static final Pattern VALID_MOBILE_PHONE_REGEX =
+            Pattern.compile("^\\+?[0-9() ]{10,20}$");
+
     private static final Pattern VALID_MAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-    public static void rejectIfIdIsNotValid(Integer id) {
-        if (id < 0) {
-            throw new BadRequestException(ErrorReason.ENTITY_ID_IS_NOT_VALID, id);
-        }
-    }
 
     public static void validateUserDto(UserDto userDto) {
         validateLogin(userDto.getLogin());
@@ -30,6 +30,8 @@ public class ValidationUtils {
         validateName(contactDto.getName());
         validateSurname(contactDto.getSurname());
         validateMobilePhone(contactDto.getMobile_phone());
+        validateHomePhone(contactDto.getHome_phone());
+        validateAddress(contactDto.getAddress());
         validateMail(contactDto.getEmail());
     }
 
@@ -41,7 +43,10 @@ public class ValidationUtils {
 
     private static void validateLogin(String login) {
         nullValidator(login);
-        // TODO: 14.08.17 validate login
+        Matcher matcher = VALID_LOGIN_REGEX.matcher(login);
+        if (!matcher.matches()) {
+            throw new BadRequestException(ErrorReason.NOT_VALID_LOGIN, login);
+        }
     }
 
     private static void validatePassword(String password) {
@@ -72,12 +77,25 @@ public class ValidationUtils {
         }
     }
 
-    private static void validateMobilePhone(String phone) {
-        // TODO: 14.08.17 validate phone number
+    private static void validateMobilePhone(String mobilePhone) {
+        nullValidator(mobilePhone);
+        Matcher matcher = VALID_MOBILE_PHONE_REGEX.matcher(mobilePhone);
+        if (!matcher.matches()) {
+            throw new BadRequestException(ErrorReason.NOT_VALID_MOBILE_PHONE, mobilePhone);
+        }
+    }
+
+    private static void validateHomePhone(String homePhone) {
+        nullValidator(homePhone);
+    }
+
+    private static void validateAddress(String address) {
+        nullValidator(address);
     }
 
     private static void validateMail(String mail) {
-        if (mail != null) {
+        nullValidator(mail);
+        if (mail.length() > 0) {
             Matcher matcher = VALID_MAIL_ADDRESS_REGEX.matcher(mail);
             if (!matcher.matches()) {
                 throw new BadRequestException(ErrorReason.NOT_VALID_EMAIL, mail);

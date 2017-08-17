@@ -1,4 +1,4 @@
-package com.cooksdev.service.dto;
+package com.cooksdev.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
