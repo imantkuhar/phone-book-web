@@ -1,13 +1,13 @@
-Simple Web Phone Book.
+# Phone Book Web
 
-Used:
+### Used:
 * Spring Boot
 * Maven
 * MySQL
 * H2 for Integration Tests
 * JavaScript and JQuery
 
-Before run: 
+### Before run: 
 * Install MySQL Server
 * Create database in MySQL with name 'phoneBookDB'
 * Change user's password and name for MySQL in application.yml
