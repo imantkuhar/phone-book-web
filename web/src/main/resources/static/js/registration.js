@@ -11,11 +11,11 @@ registrationForm.submit(function (event) {
         contentType: 'application/json',
         type: 'POST',
         dataType: 'json',
-        url: 'http://localhost:8010/user',
+        url: getBaseUrl() +'/users',
         data: JSON.stringify(userData),
         success: function (data) {
             console.log(data);
-            window.location.href = 'http://localhost:8010/login.html';
+            window.location.href = getBaseUrl() + '/login.html';
         }, error: function (xhr, str) {
             console.log(xhr)
             var errorResponse = JSON.parse(xhr.responseText).description;
@@ -24,4 +24,6 @@ registrationForm.submit(function (event) {
     });
 });
 
-
+var getBaseUrl = function () {
+    return 'http://localhost:8010';
+}

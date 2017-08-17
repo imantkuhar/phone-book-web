@@ -14,16 +14,19 @@ loginForm.submit(function (event) {
         type: 'POST',
         dataType: 'json',
         contentType: 'application/x-www-form-urlencoded',
-        url: `http://localhost:8010/oauth/token?grant_type=password&username=${userData["login"]}&password=${userData["password"]}`,
+        url: getBaseUrl() + `/oauth/token?grant_type=password&username=${userData["login"]}&password=${userData["password"]}`,
         data: JSON.stringify(userData),
         success: function (data) {
-            console.log(data)
-            var token = data.access_token;
-            if (token) {
-                localStorage.setItem('token', token);
-                window.location.href = 'http://localhost:8010/phone-book.html';
+            console.log(data);
+            var access_token = data.access_token;
+            var refresh_token = data.refresh_token;
+            if (access_token) {
+                localStorage.setItem('access_token', access_token);
+                localStorage.setItem('refresh_token', refresh_token);
+                window.location.href = getBaseUrl() + '/phone-book.html';
             } else {
-                console.log('Something went wrong');
+                var errorResponse = 'Something went wrong';
+                alertify.error(errorResponse);
             }
         }, error: function (xhr, str) {
             console.log(xhr)
@@ -33,3 +36,7 @@ loginForm.submit(function (event) {
         beforeSend: setHeader
     });
 });
+
+var getBaseUrl = function () {
+    return 'http://localhost:8010';
+}
