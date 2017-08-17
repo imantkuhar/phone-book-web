@@ -1,3 +1,9 @@
+if(localStorage.getItem('access_token') !== null){
+    window.location.href = getBaseUrl() + '/phone-book.html';
+} else {
+    $(document.body).show();
+}
+
 var loginForm = $('.login-form');
 
 function setHeader(xhr) {
@@ -29,14 +35,8 @@ loginForm.submit(function (event) {
                 alertify.error(errorResponse);
             }
         }, error: function (xhr, str) {
-            console.log(xhr)
-            var errorResponse = JSON.parse(xhr.responseText).error_description;
-            alertify.error(errorResponse);
+            alertify.error('Please enter correct login and password');
         },
         beforeSend: setHeader
     });
 });
-
-var getBaseUrl = function () {
-    return 'http://localhost:8010';
-}

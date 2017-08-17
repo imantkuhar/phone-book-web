@@ -5,71 +5,69 @@ $(document).ready(function () {
     // List of user contacts
     var contacts = [];
 
-    var contactFilter = document.querySelector('#contact_filter');
-    var logoutBtn = document.querySelector('#logout');
+    var contactFilter = $('#contact_filter');
+    var logoutBtn = $('#logout');
 
-    function setHeader1(xhr) {
+    getAllContacts();
+
+    function setHeader(xhr) {
         xhr.setRequestHeader('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     }
 
-    function setHeader2(xhr) {
-        xhr.setRequestHeader('Authorization', `${localStorage.getItem('refresh_token')}`);
+    function setHeaderForAccessToken(xhr) {
+        xhr.setRequestHeader('Authorization', 'Basic d2ViY2xpZW50Og==');
     }
 
+    function refreshToken(){
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded',
+            url: getBaseUrl() + `/oauth/token?grant_type=refresh_token&refresh_token=${localStorage.getItem('refresh_token')}`,
+            success: function (data) {
+                var access_token = data.access_token;
+                var refresh_token = data.refresh_token;
+                if (access_token) {
+                    localStorage.setItem('access_token', access_token);
+                    localStorage.setItem('refresh_token', refresh_token);
+                    getAllContacts();
+                } else {
+                    var errorResponse = 'Something went wrong';
+                    alertify.error(errorResponse);
+                }
+            }, error: function (xhr, str) {
+                var errorResponse = JSON.parse(xhr.responseText).error_description;
+                alertify.error(errorResponse);
+                window.location.href = getBaseUrl() + '/index.html';
+            },
+            beforeSend: setHeaderForAccessToken
+        });
+    }
 
-    // get new access_token using refresh_token
-    //
-    // $.ajax({
-    //     type: 'POST',
-    //     dataType: 'json',
-    //     contentType: 'application/x-www-form-urlencoded',
-    //     url: getBaseUrl() + `/oauth/token?grant_type=refresh_token&refresh_token=refresh_token`,
-    //     data: JSON.stringify(userData),
-    //     success: function (data) {
-    //         console.log(data);
-    //         var access_token = data.access_token;
-    //         var refresh_token = data.refresh_token;
-    //         if (access_token) {
-    //             localStorage.setItem('access_token', access_token);
-    //             localStorage.setItem('refresh_token', refresh_token);
-    //             window.location.href = getBaseUrl() + '/phone-book.html';
-    //         } else {
-    //             var errorResponse = 'Something went wrong';
-    //             alertify.error(errorResponse);
-    //         }
-    //     }, error: function (xhr, str) {
-    //         console.log(xhr)
-    //         var errorResponse = JSON.parse(xhr.responseText).error_description;
-    //         alertify.error(errorResponse);
-    //     },
-    //     beforeSend: setHeader2
-    // });
-
-
-    $.ajax({
-        type: 'GET',
-        url: getBaseUrl() + '/contacts',
-        success: function (data) {
-            // If token is correct show contact page and generate contact items
-            $(document.body).show();
-            contacts = data;
-            contacts.forEach(function (contact) {
-                generateContactItem(contact);
-            })
-        },
-        error: function (xhr, str) {
-            //If token is incorrect redirect user to login page
-            window.location.href = getBaseUrl() + '/login.html';
-        },
-        beforeSend: setHeader1
-    });
-
+    function getAllContacts(){
+        $.ajax({
+            type: 'GET',
+            url: getBaseUrl() + '/contacts',
+            success: function (data) {
+                // If token is correct show contact page and generate contact items
+                $(document.body).show();
+                contacts = data;
+                contacts.forEach(function (contact) {
+                    generateContactItem(contact);
+                })
+            },
+            error: function (xhr, str) {
+                refreshToken();
+            },
+            beforeSend: setHeader
+        });
+    }
 
     contacts.forEach(function (contact) {
         generateContactItem(contact);
     })
 
-    contactFilter.addEventListener('keyup', function (event) {
+    contactFilter.on('keyup', function (event) {
         filterContacts(event.target.value);
     })
 
@@ -78,7 +76,8 @@ $(document).ready(function () {
         var filteredContacts = contacts.filter(function (contact) {
             var fullName = `${contact.name} ${contact.surname}`;
             // Condition for filtering contacts
-            return contact.mobile_phone.indexOf(value) !== -1 || contact.name.indexOf(value) !== -1 || contact.surname.indexOf(value) !== -1 || fullName.indexOf(value) !== -1;
+            var filterCondition = ~contact.mobile_phone.indexOf(value) || ~contact.name.indexOf(value) || ~contact.surname.indexOf(value) || ~fullName.indexOf(value);
+            return filterCondition;
         })
         // Re-rendering contact list after filtering
         filteredContacts.forEach(function (contact) {
@@ -117,10 +116,15 @@ $(document).ready(function () {
             url: getBaseUrl() + '/contacts',
             data: JSON.stringify(contactData),
             success: function (data) {
-                console.log(data);
                 // Making edited contact fields disabled after saving
                 var inputFields = $(`[data-info=${contactId}] input`);
                 var saveButton = $(`[data-save='${contactId}']`);
+                contacts.forEach(function(contact){
+                    if(contact.id === contactId){
+                        contacts[contacts.indexOf(contact)] = contactData;
+                    }
+                });
+                $('#contact-'+contactId+'-fullname').html(contactData.name + '  ' + contactData.surname);
                 saveButton.prop('disabled', 'disabled');
                 inputFields.each(function () {
                     $(this).prop('disabled', true);
@@ -130,11 +134,12 @@ $(document).ready(function () {
                 var errorResponse = JSON.parse(xhr.responseText).description;
                 alertify.error(errorResponse);
             },
-            beforeSend: setHeader1
+            beforeSend: setHeader
         });
     }
 
     function addNewContact() {
+        document.querySelector('#contact_filter').value = '';
         var newContactWrapper = document.querySelector('.added-contact-info');
         newContactWrapper.innerHTML = `
             <div class="card-panel">
@@ -175,7 +180,7 @@ $(document).ready(function () {
                 var errorResponse = JSON.parse(xhr.responseText).description;
                 alertify.error(errorResponse);
             },
-            beforeSend: setHeader1
+            beforeSend: setHeader
         });
 
     }
@@ -224,7 +229,7 @@ $(document).ready(function () {
         contactListItem.innerHTML = `
             <div class="collapsible-header">
                 <i class="material-icons">phone</i>
-                ${contact.name} ${contact.surname}
+                <span id="contact-${contact.id}-fullname">${contact.name} ${contact.surname}</span>
                 <div class="delete-contact" data-delete="${contact.id}"></div>
             </div>
             <div class="collapsible-body" data-info="${contact.id}">
@@ -278,15 +283,17 @@ $(document).ready(function () {
     $('.phone-book-list').on('click', '.delete-contact', function (event) {
         event.stopPropagation();
         var contactId = $(event.target).data('delete');
+        var contactData = contacts.filter(function( contact ) {
+            return contact.id === contactId;
+        })[0];
         alertify.confirm('Do you really want to delete this contact?', function () {
             $.ajax({
                 contentType: 'application/json',
                 type: 'DELETE',
                 dataType: 'json',
-                url: getBaseUrl() + 'contacts',
-                data: JSON.stringify(contacts[contactId]),
+                url: getBaseUrl() + '/contacts',
+                data: JSON.stringify(contactData),
                 success: function (data) {
-                    console.log(data);
                     // Removing contact from existing array
                     for (var i = 0; i < contacts.length; i++) {
                         if (contacts[i].id === contactId) {
@@ -297,29 +304,21 @@ $(document).ready(function () {
                     deletedContact.remove();
                     alertify.success('Contact was deleted!');
                 }, error: function (xhr, str) {
-                    console.log(contacts[contactId]);
-                    console.log(xhr);
                     var errorResponse = JSON.parse(xhr.responseText).description;
                     alertify.error(errorResponse);
                 },
-                beforeSend: setHeader1
+                beforeSend: setHeader
             });
         }, function () {
-            console.log('Cancel');
         });
     })
 
     // Logout functionality
-    // logoutBtn.on('click' , function(event){
-    //     e.preventDefault();
-    //     localStorage.removeItem('access_token');
-    //     localStorage.removeItem('refresh_token');
-    //     window.location.href = getBaseUrl() + '/login.html';
-    // })
-
+    logoutBtn.on('click' , function(event){
+        event.preventDefault();
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        window.location.href = getBaseUrl() + '/login.html';
+    })
 });
-
-var getBaseUrl = function () {
-    return 'http://localhost:8010';
-}
 

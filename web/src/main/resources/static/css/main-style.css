@@ -5,3 +5,7 @@
     padding-bottom: 50px;
     text-align: center;
 }
+
+#nav-mobile{
+    display: none;
+}

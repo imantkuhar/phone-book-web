@@ -1,3 +1,9 @@
+if(localStorage.getItem('access_token') !== null){
+    window.location.href = getBaseUrl() + '/phone-book.html';
+} else {
+    $(document.body).show();
+}
+
 var registrationForm = $('.registration-form');
 registrationForm.submit(function (event) {
     event.preventDefault();
@@ -23,7 +29,3 @@ registrationForm.submit(function (event) {
         },
     });
 });
-
-var getBaseUrl = function () {
-    return 'http://localhost:8010';
-}
