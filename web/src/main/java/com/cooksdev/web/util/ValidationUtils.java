@@ -29,8 +29,8 @@ public class ValidationUtils {
     public static void validateContactDto(ContactDto contactDto) {
         validateName(contactDto.getName());
         validateSurname(contactDto.getSurname());
-        validateMobilePhone(contactDto.getMobile_phone());
-        validateHomePhone(contactDto.getHome_phone());
+        validateMobilePhone(contactDto.getMobilePhone());
+        validateHomePhone(contactDto.getHomePhone());
         validateAddress(contactDto.getAddress());
         validateMail(contactDto.getEmail());
     }

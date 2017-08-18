@@ -45,5 +45,27 @@ create table contacts
 ```
 
 
+[1]: web/src/main/resources/assets/main.jpeg
+[2]: web/src/main/resources/assets/registration.jpeg
+[3]: web/src/main/resources/assets/login.jpeg
+[4]: web/src/main/resources/assets/add_new_contect.jpeg
+[5]: web/src/main/resources/assets/edit_contact.jpeg
+[6]: web/src/main/resources/assets/search_contact.jpeg
 
+#### main page
+![Alt text][1]
 
+#### registration page
+![Alt text][2]
+
+#### login page
+![Alt text][3]
+
+#### add new contact
+![Alt text][4]
+
+#### edit contact
+![Alt text][5]
+
+#### search contact by name or mobile phone
+![Alt text][6]

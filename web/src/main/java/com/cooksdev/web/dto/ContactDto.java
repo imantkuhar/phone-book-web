@@ -1,5 +1,6 @@
 package com.cooksdev.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,8 +15,10 @@ public class ContactDto {
     private Integer id;
     private String name;
     private String surname;
-    private String mobile_phone;
-    private String home_phone;
+    @JsonProperty("mobile_phone")
+    private String mobilePhone;
+    @JsonProperty("home_phone")
+    private String homePhone;
     private String address;
     private String email;
     private Integer userId;
