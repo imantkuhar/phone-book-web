@@ -1,0 +1,14 @@
+<dataset>
+
+    <contacts
+    id="1"
+    name="name"
+    surname="surname"
+    mobile_phone="0123456789"
+    home_phone="123456"
+    address="address"
+    mail="email@.gmail.com"
+    user_id="1"
+    />
+
+</dataset>
