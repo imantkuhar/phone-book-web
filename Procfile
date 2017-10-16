@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar phone-book-web/web/target/dependency/webamvn pp-runner.jar --port $PORT target/*.war
+web: java -Dserver.port=$PORT -jar phone-book-web/web/target/phonebookweb-1.0-SNAPSHOT.jar
