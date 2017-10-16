@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -jar phone-book-web\web\target\web-1.0-SNAPSHOT.jar --server.port=$PORT

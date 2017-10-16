@@ -16,3 +16,7 @@ security:
     resource:
       jwt:
         key-value: JWT-t0ken-Secret_Key
+
+---
+server:
+  port: ${PORT}
