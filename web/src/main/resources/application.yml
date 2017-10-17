@@ -10,13 +10,8 @@ spring:
     hibernate:
       ddl-auto: update
 
-
 security:
   oauth2:
     resource:
       jwt:
         key-value: JWT-t0ken-Secret_Key
-
-#---
-#server:
-#  port: ${PORT}
