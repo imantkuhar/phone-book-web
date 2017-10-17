@@ -1,1 +1,0 @@
-web: java -Dserver.port=$PORT -jar phone-book-web/web/target/web-1.0-SNAPSHOT.jar
