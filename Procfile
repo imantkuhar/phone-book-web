@@ -1,1 +1,1 @@
-web: java -jar web/target/web-1.0-SNAPSHOT.jar
+java -jar web/target/web-1.0-SNAPSHOT.jar
